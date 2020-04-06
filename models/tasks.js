@@ -1,62 +1,40 @@
-'use strict';
-
-const tasksModel = require('../database').models.tasks;
+const TasksModel = require('../database').models.tasks;
 
 // Create task
-const createTask = (data) => {
-    return new Promise((resolve, reject) => {
-        let newTasksModel = new tasksModel();
-        newTasksModel.name = data.name;
-        newTasksModel.status = data.status;
-        newTasksModel.save(err => {
-            if (err) return reject(err);
-            else return resolve();
-        });
-    })
-};
+const createTask = (data) => new Promise((resolve, reject) => {
+  const newTasksModel = new TasksModel();
+  newTasksModel.name = data.name;
+  newTasksModel.status = data.status;
+  newTasksModel.save((err) => {
+    if (err) return reject(err);
+    return resolve();
+  });
+});
 
 // Read task
-const readTask = () => {
-    return new Promise((resolve, reject) => {
-        tasksModel.find({})
-            .then((data) => {
-                return resolve(data);
-            })
-            .catch((err) => {
-                return reject(err);
-            })
-    })
-}
+const readTask = () => new Promise((resolve, reject) => {
+  TasksModel.find({})
+    .then((data) => resolve(data))
+    .catch((err) => reject(err));
+});
 
 // Update task
-const updateTask = (data) => {
-    return new Promise((resolve, reject) => {
-        tasksModel.updateOne({_id:data.taskId}, {$set:{name:data.name,status:data.status}})
-            .then((docs) => {
-                return resolve(docs);
-            })
-            .catch((err) => {
-                return reject(err);
-            })
-    })
-}
+const updateTask = (data) => new Promise((resolve, reject) => {
+  TasksModel.updateOne({ _id: data.taskId }, { $set: { name: data.name, status: data.status } })
+    .then((docs) => resolve(docs))
+    .catch((err) => reject(err));
+});
 
 // Delete task
-const deleteTask = (data) => {
-    return new Promise((resolve, reject) => {
-        tasksModel.deleteOne({_id: data.taskId})
-            .then((docs) => {
-                return resolve(docs);
-            })
-            .catch((err) => {
-                return reject(err);
-            })
-    })
-}
+const deleteTask = (data) => new Promise((resolve, reject) => {
+  TasksModel.deleteOne({ _id: data.taskId })
+    .then((docs) => resolve(docs))
+    .catch((err) => reject(err));
+});
 
 module.exports = {
-    createTask,
-    readTask,
-    updateTask,
-    deleteTask
-}
+  createTask,
+  readTask,
+  updateTask,
+  deleteTask,
+};
