@@ -1,0 +1,53 @@
+{
+    "development": {
+      "server": {
+        "host": "0.0.0.0",
+        "port": 3000
+      },
+      "logger": {
+        "level": "dev"
+      },
+      "db": {
+        "host": "localhost",
+        "username": "",
+        "password": "",
+        "database": "todo_db",
+        "port": 27017,
+        "ssl": false
+      }
+    },
+    "staging": {
+      "server": {
+        "host": "0.0.0.0",
+        "port": 7000
+      },
+      "logger": {
+        "level": "combined"
+      },
+      "db": {
+        "host": "localhost",
+        "username": "REPLACE_WITH_USERNAME",
+        "password": "REPLACE_WITH_PASSWORD",
+        "database": "REPLACE_WITH_DATABASE_NAME",
+        "port": 27017,
+        "ssl": false
+      }
+    },
+    "production": {
+      "server": {
+        "host": "0.0.0.0",
+        "port": 8080
+      },
+      "logger": {
+        "level": "combined"
+      },
+      "db": {
+        "host": "ds229388.mlab.com",
+        "username": "test_user",
+        "password": "JYmCBNFyYlptY7Q6",
+        "database": "todo_db",
+        "port": 27017,
+        "ssl": false
+      }
+    }
+  }
