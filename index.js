@@ -4,6 +4,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const os = require('os');
 
 /**
  * Routes
@@ -34,18 +35,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', api);
 
 // sample get request
-app.get('/', function (req, res) {
-    res.send("It's working!");
+app.get('/', (req, res) => {
+  res.send("It's working!");
 });
 
 /**
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-  console.log('App is running at %s:%d in %s mode',require('os').hostname, app.get('port'), app.get('env'));
+  console.log('App is running at %s:%d in %s mode', os.hostname, app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
 });
 
-//const customCommandModel = require('./database');
+// const customCommandModel = require('./database');
 
 module.exports = app;

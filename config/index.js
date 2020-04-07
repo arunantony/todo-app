@@ -1,44 +1,35 @@
-let config = require('./config.json');
+const config = require('./config.json');
 
-//static data to don't have to generate the config_data 2 times
-let config_data = null;
+// static data to don't have to generate the configData 2 times
+let configData = null;
 
-module.exports = function () {
+module.exports = () => {
+  // if the static data was already set. return it
+  if (configData !== null && configData !== undefined) {
+    return configData;
+  }
 
-    // if the static data was already set. return it
-    if (config_data != null && config_data != undefined) {
-        return config_data
-    }
+  configData = {};
 
-    config_data = {};
+  // LOAD JSON
+  if (process.env.NODE_ENV === undefined || process.env.NODE_ENV == null || process.env.NODE_ENV === 'development') {
+    configData = config.development;
 
-    //LOAD JSON
-    if (process.env.NODE_ENV === undefined || process.env.NODE_ENV == null || process.env.NODE_ENV == 'development') {
-        config_data = config.development;
+    // LOAD FROM ENV VARIABLES
+    configData.server.host = configData.server.ip;
+    configData.server.port = process.env.PORT || configData.server.port;
+  } else if (process.env.NODE_ENV === 'production') {
+    configData = config.production;
 
-        //LOAD FROM ENV VARIABLES
-        config_data.server.host = config_data.server.ip;
-        config_data.server.port = process.env.PORT || config_data.server.port;
+    // LOAD FROM ENV VARIABLES
+    configData.server.host = configData.server.ip;
+    configData.server.port = process.env.PORT || configData.server.port;
+  } else if (process.env.NODE_ENV === 'staging') {
+    configData = config.staging;
 
-    } else {
-        if (process.env.NODE_ENV == 'production') {
-
-            config_data = config.production;
-
-            //LOAD FROM ENV VARIABLES
-            config_data.server.host = config_data.server.ip;
-            config_data.server.port = process.env.PORT || config_data.server.port;
-
-        } else {
-            if (process.env.NODE_ENV == 'staging') {
-                config_data = config.staging;
-
-                //LOAD FROM ENV VARIABLES
-                config_data.server.host = config_data.server.ip;
-                config_data.server.port = process.env.PORT || config_data.server.port;
-
-            }
-        }
-    }
-    return config_data;
+    // LOAD FROM ENV VARIABLES
+    configData.server.host = configData.server.ip;
+    configData.server.port = process.env.PORT || configData.server.port;
+  }
+  return configData;
 };
