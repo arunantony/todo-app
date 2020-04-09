@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('../config')().db;
+const { db: config } = require('../config')();
 const tasks = require('./schemas/tasks.js');
 
 mongoose.set('useFindAndModify', false);

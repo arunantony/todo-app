@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const { swaggerUi, swaggerSpec } = require('./services/swagger');
+const { server: expressConfig, logger: loggerConfig } = require('./config')();
 
 /**
  * Routes
@@ -16,9 +17,6 @@ const index = require('./routes/index');
  * Create Express server.
  */
 const app = express();
-
-const expressConfig = require('./config')().server;
-const loggerConfig = require('./config')().logger;
 
 /**
  * Express configuration.
