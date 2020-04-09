@@ -12,23 +12,24 @@ module.exports = () => {
   configData = {};
 
   // LOAD JSON
-  if (process.env.NODE_ENV === undefined || process.env.NODE_ENV == null || process.env.NODE_ENV === 'development') {
-    configData = config.development;
-
-    // LOAD FROM ENV VARIABLES
-    configData.server.host = configData.server.ip;
-    configData.server.port = process.env.PORT || configData.server.port;
-  } else if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     configData = config.production;
 
     // LOAD FROM ENV VARIABLES
-    configData.server.host = configData.server.ip;
+    configData.server.host = process.env.HOST || configData.server.host;
     configData.server.port = process.env.PORT || configData.server.port;
   } else if (process.env.NODE_ENV === 'staging') {
     configData = config.staging;
 
     // LOAD FROM ENV VARIABLES
-    configData.server.host = configData.server.ip;
+    configData.server.host = process.env.HOST || configData.server.host;
+    configData.server.port = process.env.PORT || configData.server.port;
+  } else {
+    // Returns the default config as Development
+    configData = config.development;
+
+    // LOAD FROM ENV VARIABLES
+    configData.server.host = process.env.HOST || configData.server.host;
     configData.server.port = process.env.PORT || configData.server.port;
   }
   return configData;

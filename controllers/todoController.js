@@ -17,7 +17,7 @@ exports.todo_task_post = (req, res) => {
   }
 
   tasks.createTask(reqObj)
-    .then(() => res.json({ status: true, message: 'Task created successfullly' }))
+    .then((doc) => res.json({ status: true, message: 'Task created successfullly', taskId: doc.id }))
     .catch((err) => {
       console.log(err);
       return res.json({ status: false, message: 'Task creation failed' });

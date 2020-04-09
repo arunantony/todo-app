@@ -5,9 +5,9 @@ const createTask = (data) => new Promise((resolve, reject) => {
   const newTasksModel = new TasksModel();
   newTasksModel.name = data.name;
   newTasksModel.status = data.status;
-  newTasksModel.save((err) => {
+  newTasksModel.save((err, doc) => {
     if (err) return reject(err);
-    return resolve();
+    return resolve(doc);
   });
 });
 

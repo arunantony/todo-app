@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint" : "eslint . --ignore-pattern node_modules\/;exit 0",
     "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js"

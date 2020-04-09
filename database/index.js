@@ -6,21 +6,12 @@ mongoose.set('useFindAndModify', false);
 
 // Connect to the database
 // construct the database URI and encode username and password.
-// const dbURI = `mongodb://${config.host}:${config.port}`;
-const dbURI = 'mongodb://localhost:$27017';
-
-// const dbOptions = {
-//   user: encodeURIComponent(config.username),
-//   pass: encodeURIComponent(config.password),
-//   dbName: config.database,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// };
+const dbURI = `mongodb://${config.host}:${config.port}`;
 
 const dbOptions = {
-  user: encodeURIComponent(''),
-  pass: encodeURIComponent(''),
-  dbName: 'todo_db',
+  user: encodeURIComponent(config.username),
+  pass: encodeURIComponent(config.password),
+  dbName: config.database,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };

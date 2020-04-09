@@ -21,13 +21,10 @@ const loggerConfig = require('./config')().logger;
 /**
  * Express configuration.
  */
-// app.set('host', expressConfig.host);
-// app.set('port', expressConfig.port);
+app.set('host', expressConfig.host);
+app.set('port', expressConfig.port);
 
-// app.use(logger(loggerConfig.level));
-
-app.set('host', 'localhost');
-app.set('port', 3000);
+app.use(logger(loggerConfig.level));
 
 app.use(logger('dev'));
 
