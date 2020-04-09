@@ -3,7 +3,7 @@ const tasks = require('../models/tasks.js');
 
 // Create get testGet
 exports.todo_testGet_get = (req, res) => {
-  res.json({ status: true, message: 'message from todo_testGet_get' });
+  res.json({ status: true, message: 'Test get request successfull.' });
 };
 
 // Create post task
