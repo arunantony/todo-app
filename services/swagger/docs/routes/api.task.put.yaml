@@ -1,0 +1,27 @@
+path:
+  /api/task/{taskId}:
+    put:
+      tags:
+        - Task
+      description: Read all the tasks
+      produces:
+        - application/json
+      parameters:
+        - name: taskId
+          in: path
+          description: Associated id of the task that need to be updated
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: Task Name
+          required: true
+          type: string
+        - name: status
+          in: formData
+          description: Status of the task
+          required: true
+          type: string
+      responses:
+        200:
+          description: A success message

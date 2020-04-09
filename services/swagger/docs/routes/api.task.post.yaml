@@ -1,0 +1,22 @@
+paths:
+  /api/task:
+    post:
+      tags:
+        - Task
+      description: Create a task
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A success message having the task id
+      parameters:
+        - name: name
+          in: formData
+          description: Task Name
+          required: true
+          type: string
+        - name: status
+          in: formData
+          description: Status of the task
+          required: true
+          type: string

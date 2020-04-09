@@ -1,0 +1,11 @@
+path:
+  /api/task:
+    get:
+      tags:
+        - Task
+      description: Read all the tasks
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A success message having array of task

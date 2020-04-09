@@ -1,11 +1,6 @@
 /* eslint-disable consistent-return */
 const tasks = require('../models/tasks.js');
 
-// Create get testGet
-exports.todo_testGet_get = (req, res) => {
-  res.json({ status: true, message: 'Test get request successfull.' });
-};
-
 // Create post task
 exports.todo_task_post = (req, res) => {
   const reqObj = req.body;

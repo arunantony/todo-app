@@ -4,13 +4,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+const { swaggerUi, swaggerSpec } = require('./services/swagger');
 
 /**
  * Routes
  */
 const api = require('./routes/api');
+const index = require('./routes/index');
 
 /**
  * Create Express server.
@@ -35,41 +35,10 @@ app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// swagger definition
-const swaggerDefinition = {
-  info: {
-    title: 'Node To-Do APP API',
-    version: '1.0.0',
-    description: 'Demonstrating how to describe a RESTful API with Swagger',
-  },
-  host: 'localhost:3000',
-  basePath: '/',
-};
-
-// options for the swagger docs
-const options = {
-  // import swaggerDefinitions
-  swaggerDefinition,
-  // path to the API docs
-  apis: ['./routes/*.js', './database/schemas/*.js'],
-};
-
-// initialize swagger-jsdoc
-const swaggerSpec = swaggerJSDoc(options);
-
-// serve swagger
-app.get('/swagger.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
-});
-
+// Enpoint serving API DOC using Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api', api);
-
-// sample get request
-app.get('/', (req, res) => {
-  res.send("It's working!");
-});
+app.use('/', index);
 
 module.exports = app;

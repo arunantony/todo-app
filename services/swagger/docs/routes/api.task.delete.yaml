@@ -1,0 +1,17 @@
+path:
+  /api/task/{taskId}:
+    delete:
+      tags:
+        - Task
+      description: Delete a task
+      produces:
+        - application/json
+      parameters:
+        - name: taskId
+          in: path
+          description: Associated id of the task that need to be updated
+          required: true
+          type: string
+      responses:
+        200:
+          description: A success message
