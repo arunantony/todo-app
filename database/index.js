@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { db: config } = require('../config')();
 const tasks = require('./schemas/tasks.js');
+const { logger } = require('../services/logger');
 
 mongoose.set('useFindAndModify', false);
 
@@ -18,14 +19,14 @@ const dbOptions = {
 
 mongoose.connect(dbURI, dbOptions)
   .catch((err) => {
-    console.log(err.message);
+    logger.error(err.message);
   });
 
 // Throw an error if the connection fails
 mongoose.connection.on('error', (err) => {
   // if(err) throw err;
   // throw err;
-  console.log(err.message);
+  logger.error(err.message);
 });
 
 // mpromise (mongoose's default promise library) is deprecated,

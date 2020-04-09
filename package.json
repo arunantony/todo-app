@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ignore-pattern node_modules/;exit 0",
+    "lint": "eslint . --ignore-pattern node_modules/",
     "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -26,7 +26,8 @@
     "morgan": "^1.10.0",
     "supertest": "^4.0.2",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^3.2.1"
   },
   "jest": {
     "testEnvironment": "node",

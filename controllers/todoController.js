@@ -1,6 +1,8 @@
 /* eslint-disable consistent-return */
 const tasks = require('../models/tasks.js');
 
+const { logger } = require('../services/logger');
+
 // Create post task
 exports.todo_task_post = (req, res) => {
   const reqObj = req.body;
@@ -14,7 +16,7 @@ exports.todo_task_post = (req, res) => {
   tasks.createTask(reqObj)
     .then((doc) => res.json({ status: true, message: 'Task created successfullly', taskId: doc.id }))
     .catch((err) => {
-      console.log(err);
+      logger.error(err);
       return res.json({ status: false, message: 'Task creation failed' });
     });
 };
@@ -32,7 +34,7 @@ exports.todo_task_get = (req, res) => {
     })
     .catch((err) => {
       res.json({ status: false, message: 'Task read failed' });
-      console.log(err);
+      logger.error(err);
     });
 };
 
@@ -55,7 +57,7 @@ exports.todo_task_put = (req, res) => {
     })
     .catch((err) => {
       res.json({ status: false, message: 'Task update failed' });
-      console.log(err);
+      logger.error(err);
     });
 };
 
@@ -70,11 +72,10 @@ exports.todo_task_delete = (req, res) => {
   const data = { taskId };
   tasks.deleteTask(data)
     .then((docs) => {
-      console.log('docs, ', docs);
       if (docs.deletedCount === 1) { res.json({ status: true, message: 'Task deleted successfullly' }); } else { res.json({ status: false, message: 'Got invalid credentials. Task delete failed.' }); }
     })
     .catch((err) => {
       res.json({ status: false, message: 'Task deleted failed' });
-      console.log(err);
+      logger.error(err);
     });
 };
