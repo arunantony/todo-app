@@ -24,6 +24,12 @@ module.exports = () => {
     // LOAD FROM ENV VARIABLES
     configData.server.host = process.env.HOST || configData.server.host;
     configData.server.port = process.env.PORT || configData.server.port;
+  } else if (process.env.NODE_ENV === 'test') {
+    configData = config.test;
+
+    // LOAD FROM ENV VARIABLES
+    configData.server.host = process.env.HOST || configData.server.host;
+    configData.server.port = process.env.PORT || configData.server.port;
   } else {
     // Returns the default config as Development
     configData = config.development;

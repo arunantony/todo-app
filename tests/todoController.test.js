@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 const supertest = require('supertest');
 const app = require('../server');
+
 // Link to your server file
 const request = supertest(app);
 const { mongoose } = require('../database');

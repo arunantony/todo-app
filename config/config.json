@@ -1,7 +1,7 @@
 {
     "development": {
       "server": {
-        "host": "0.0.0.0",
+        "host": "localhost",
         "port": 3000
       },
       "logger": {
@@ -46,6 +46,23 @@
         "username": "test_user",
         "password": "JYmCBNFyYlptY7Q6",
         "database": "todo_db",
+        "port": 27017,
+        "ssl": false
+      }
+    },
+    "test": {
+      "server": {
+        "host": "localhost",
+        "port": 3000
+      },
+      "logger": {
+        "level": "dev"
+      },
+      "db": {
+        "host": "localhost",
+        "username": "",
+        "password": "",
+        "database": "test_todo_db",
         "port": 27017,
         "ssl": false
       }

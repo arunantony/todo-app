@@ -18,7 +18,7 @@ const options = {
   // import swaggerDefinitions
   swaggerDefinition,
   // path to the API docs
-  apis: ['./services/swagger/docs/**/*.yaml'],
+  apis: ['./utils/swagger/docs/**/*.yaml'],
 };
 
 // initialize swagger-jsdoc

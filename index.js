@@ -1,6 +1,6 @@
 const os = require('os');
 const app = require('./server');
-const { logger } = require('./services/logger');
+const { logger } = require('./utils/logger');
 
 /**
  * Start Express server.

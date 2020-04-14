@@ -15,3 +15,7 @@ path:
       responses:
         200:
           description: A success message
+        400:
+          description: Missing parameters
+        404:
+          description: Got invalid credentials. Task delete failed.

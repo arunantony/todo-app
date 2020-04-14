@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ignore-pattern node_modules/",
+    "pretest": "env NODE_ENV=test",
     "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js"

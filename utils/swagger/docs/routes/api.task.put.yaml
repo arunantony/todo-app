@@ -23,5 +23,9 @@ path:
           required: true
           type: string
       responses:
-        200:
+        201:
           description: A success message
+        400:
+          description: Missing parameters
+        404:
+          description: Got invalid credentials. Task update failed.
