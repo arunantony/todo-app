@@ -26,7 +26,6 @@ app.set('host', expressConfig.host);
 app.set('port', expressConfig.port);
 
 app.use(logger(loggerConfig.level));
-app.use(logger('dev'));
 
 // parse application/json
 app.use(bodyParser.json());
